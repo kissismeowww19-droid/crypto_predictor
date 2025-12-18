@@ -18,7 +18,7 @@ class Config:
     
     # Alert thresholds
     THRESH_PRICE: float = float(os.getenv("THRESH_PRICE", "8.0"))  # % change in m5
-    THRESH_VOL_RATIO: float = float(os.getenv("THRESH_VOL_RATIO", "3.0"))  # m5 vs previous 5m
+    THRESH_VOL_RATIO: float = float(os.getenv("THRESH_VOL_RATIO", "3.0"))  # m5 vs avg 5m over h6
     THRESH_LIQ_USD: float = float(os.getenv("THRESH_LIQ_USD", "30000"))  # minimum liquidity
     
     # Polling settings

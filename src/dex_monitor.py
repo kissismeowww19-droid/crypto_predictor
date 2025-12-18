@@ -116,13 +116,12 @@ class DexMonitor:
             volume_h6 = pair.get("volume", {}).get("h6", 0)
             liquidity_usd = pair.get("liquidity", {}).get("usd", 0)
             
-            # Calculate volume ratio (m5 represents 5 minutes)
-            # h6 represents 6 hours = 360 minutes
-            # We want to compare 5-min volume against average 5-min volume in last 6h
-            # Approximate: volume_ratio = (volume_m5) / (volume_h6 / 72)
+            # Calculate volume ratio (m5 represents 5 minutes, volume_h6 is total 6-hour volume)
+            # h6 represents 6 hours = 360 minutes = 72 five-minute periods
+            # We compare current 5-min volume against average 5-min volume in last 6h
             volume_ratio = 0
             if volume_h6 > 0:
-                avg_5min_volume = volume_h6 / 72  # 6 hours = 72 five-minute periods
+                avg_5min_volume = volume_h6 / 72  # Average 5-min volume from 6h total
                 if avg_5min_volume > 0:
                     volume_ratio = volume_m5 / avg_5min_volume
             
