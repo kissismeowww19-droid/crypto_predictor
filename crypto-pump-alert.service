@@ -1,0 +1,29 @@
+[Unit]
+Description=Crypto Pump Alert Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+Group=YOUR_USERNAME
+WorkingDirectory=/path/to/crypto_predictor
+EnvironmentFile=/path/to/crypto_predictor/.env
+ExecStart=/path/to/crypto_predictor/venv/bin/python src/bot.py
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=crypto-pump-alert
+
+# Security hardening (optional)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/path/to/crypto_predictor
+
+[Install]
+WantedBy=multi-user.target

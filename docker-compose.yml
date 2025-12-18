@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  crypto-pump-alert:
+    build: .
+    container_name: crypto-pump-alert-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
